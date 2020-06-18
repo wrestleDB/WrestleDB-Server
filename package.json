@@ -1,0 +1,32 @@
+{
+  "name": "wrestledb-server",
+  "version": "1.0.0",
+  "description": "WrestleDB API Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node-dev --no-deps --respawn index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wrestleDB/WrestleDB-Server.git"
+  },
+  "keywords": [
+    "wrestledb"
+  ],
+  "author": "Aldon L. Isenberg II",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wrestleDB/WrestleDB-Server/issues"
+  },
+  "homepage": "https://github.com/wrestleDB/WrestleDB-Server#readme",
+  "dependencies": {
+    "coffeescript": "^2.5.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.19"
+  },
+  "devDependencies": {
+    "node-dev": "^4.0.0"
+  }
+}
