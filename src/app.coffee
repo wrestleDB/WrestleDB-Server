@@ -1,15 +1,34 @@
-console.log "\nStarting App\n"
-cors    = require "cors"
-express = require "express"
-db      = require './services/database'
+global.express  = require "express"
+global.app      = express()
+connectDatabase = require('./config/database').connect
+setupExpress    = require './config/express'
+setupRoutes     = require './config/routes'
+setVariables    = require './config/init'
+server          = require('http').createServer(app)
 
-app = express()
+################################################################
+# Configuration Initialization
+################################################################
+console.log "APP - Setting Environment Variables"
+setVariables()
 
-# Connect to DB
-db.connect()
+console.log "APP - Configuring Express"
+setupExpress()
 
-app.use express.json()
-app.use cors()
+console.log "APP - Setting up Routes"
+setupRoutes(app)
 
-port = process.env.PORT or 8081
-app.listen(port, () => console.log "Express App listening on port #{port}!")
+console.log "APP - Connecting to Database"
+connectDatabase()
+
+################################################################
+# Startup
+################################################################
+console.log "APP - Starting Server on port", app.get('port')
+server.listen app.get('port')
+
+console.log "APP - Server started on port %d in %s mode", app.get('port'), app.settings.env
+
+process.on 'uncaughtException', (err) ->
+  console.log "APP - caught an uncaught"
+  console.err err

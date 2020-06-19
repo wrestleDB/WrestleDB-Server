@@ -1,0 +1,1 @@
+exports.Wrestler = require './wrestler'

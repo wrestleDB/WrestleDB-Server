@@ -9,8 +9,9 @@ module.exports =
   connect: () =>
     connection = mongoose.connection
 
-    mongoose.connection.on "error", handleFailure
+    mongoose.set('useUnifiedTopology', true)
 
+    mongoose.connection.on "error", handleFailure
     mongoose.connection.on "open", () =>
       console.log("MongoDB connected to[-- #{connection.db.databaseName} --]")#.grey.bgRed)
 
