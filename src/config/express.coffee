@@ -1,9 +1,12 @@
 cors = require "cors"
+helmet = require "helmet"
 
 module.exports = ->
   # General Express configuration
-  app.use express.json()
+  console.log "EXPRESS - Setting up configuration"
   app.set 'port', process.env.PORT or 8081
+  app.use helmet()
+  app.use express.json()
   app.use cors()
 
   # Setup Database connection

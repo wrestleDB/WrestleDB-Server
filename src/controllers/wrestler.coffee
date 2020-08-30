@@ -9,7 +9,7 @@ Wrestler = require '../models/wrestler'
 
 class WrestlerController
   info: (req, res) ->
-    console.log "CONTROLLER - WRESTLER.info request: ", JSON.stringify(req?.query, null, 2)
+    console.log "CONTROLLER:wrestler - info request: ", JSON.stringify(req?.query, null, 2)
     wrestlers = await Wrestler.find()
     if false
       res.writeHead 500, {"Content-Type" : "application/json", "connection" : "keep-alive"}

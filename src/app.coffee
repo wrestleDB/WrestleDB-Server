@@ -1,9 +1,9 @@
 global.express  = require "express"
 global.app      = express()
-auth            = require './services/authenticate'
+authenticate    = require './services/authenticate'
 connectDatabase = require('./config/database').connect
 setupExpress    = require './config/express'
-setupRoutes     = require './config/routes'
+setRoutes       = require './config/routes'
 setVariables    = require './config/init'
 server          = require('http').createServer(app)
 
@@ -16,14 +16,13 @@ setVariables()
 console.log "APP - Configuring Express"
 setupExpress()
 
-# initalize authentication middleware (passport)
-# This should be after static file (so auth lookups only happen on route requests), and it must
-# be before app.router so auth is loaded before routes are loaded.
-
-# auth.init app
+console.log "APP - Authenticating"
+# This should be after static file (so auth lookups only happen on route requests)
+authenticate.init app
+# And it must be before setRoutes so auth is loaded before routes are loaded.
 
 console.log "APP - Setting up Routes"
-setupRoutes(app)
+setRoutes(app)
 
 console.log "APP - Connecting to Database"
 connectDatabase()

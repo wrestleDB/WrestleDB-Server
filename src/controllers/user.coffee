@@ -9,8 +9,9 @@ User = require '../models/user'
 
 class UserController
   info: (req, res) ->
-    console.log "CONTROLLER - WRESTLER.info request: ", JSON.stringify(req?.query, null, 2)
+    console.log "CONTROLLER:user - info request: ", JSON.stringify(req?.query, null, 2)
     user = await User.find()
+
     if false
       res.writeHead 500, {"Content-Type" : "application/json", "connection" : "keep-alive"}
       res.write JSON.stringify({"error" : "wrestler info missing"})

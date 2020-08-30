@@ -59,6 +59,7 @@ UserSchema.methods.setPassword = (password, cb) ->
 
 #compare passwords
 UserSchema.methods.checkPassword = (password, done) ->
+  console.log "MODEL -  Checking Password: ", JSON.stringify(password, null, 2)
   hasher.compare password, @password, done
 
 UserSchema.methods.hasPermission = (permission) ->
