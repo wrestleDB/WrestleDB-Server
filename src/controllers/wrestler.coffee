@@ -1,9 +1,3 @@
-_ = require 'lodash'
-fs = require 'fs'
-http = require 'http'
-path = require 'path'
-util = require 'util'
-
 Wrestler = require '../models/wrestler'
 # WrestlerRater = '../services/rater/wrestler_rater'
 

@@ -5,6 +5,10 @@ module.exports = (app) ->
     console.log "loading wrestlers route"
     Controllers.Wrestler().info req, res
 
-  app.post '/authenticate', (req, res) ->
-    console.log "loading authentication route"
-    Controllers.Authenticate().info req, res
+  app.get '/tournaments', (req, res) ->
+    console.log "loading tournaments route"
+    Controllers.Tournament().getTournaments req, res
+
+  app.put '/tournaments', (req, res) ->
+    console.log "ROUTES - put to tournaments route, req.params: ", req
+    Controllers.Tournament().addTournament req, res

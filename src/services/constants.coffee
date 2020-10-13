@@ -1,1 +1,0 @@
-exports.userPermissions = ['quote', 'book', 'manage', 'audit']
