@@ -19,7 +19,6 @@ wrestlerSchema = new Schema
   zip              : String,
   guardians        : [String]
 
-
 Wrestler = mongoose.model('Wrestler', wrestlerSchema)
 
 module.exports = Wrestler

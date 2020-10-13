@@ -1,5 +1,5 @@
 mongoose = require('mongoose')
-# colors = require('colors') * need to figure out a way to handle keeping this a dev-dependency by dev vs production console logging
+# colors = require('colors') TODO: handle keeping this a dev-dependency by dev vs production console logging
 
 handleFailure = () =>
   console.log("There was an error")#.bold.red.bgWhite)
