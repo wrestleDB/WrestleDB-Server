@@ -3,6 +3,8 @@ mongoose       = require 'mongoose'
 bracketTypes = ['double-elimination', 'round-robin', 'dual', 'dual-round-robin']
 
 TournamentSchema = new mongoose.Schema
+  status    : type: String, default: 'created' #, enums: ['created', 'inProgress', 'complete', 'cancelled']
+  hostUser  : type: mongoose.Schema.Types.ObjectId, required:true # the owning user
   created   : type: Date, default: Date.now
   eventName : type: String, required: true
   bracketType : type: String, enum: bracketTypes, default: 'double-elimination'
