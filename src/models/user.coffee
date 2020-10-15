@@ -36,7 +36,8 @@ UserSchema.methods.setPassword = (password, cb) ->
 
 #compare passwords
 UserSchema.methods.checkPassword = (password, done) ->
-  console.log "password check", password, @password
+  console.log "password check", password
+  console.log "password check", @password
   hasher.compare password, @password, done
 
 module.exports = mongoose.model 'users', UserSchema
