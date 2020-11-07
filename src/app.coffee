@@ -1,10 +1,13 @@
 global.express  = require "express"
 global.app      = express()
+helmet          = require 'helmet'
 connectDatabase = require('./config/database').connect
 setupExpress    = require './config/express'
 setupRoutes     = require './config/routes'
 setVariables    = require './config/init'
 server          = require('http').createServer(app)
+
+app.use helmet()
 
 ################################################################
 # Configuration Initialization

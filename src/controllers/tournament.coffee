@@ -19,23 +19,25 @@ class TournamentController
     res.end()
 
   addTournament: (req, res) ->
-    console.log "CONTROLLER - TOURNAMENT.addTournament request: ", req.body.tournament
-    unless req.body?.tournament?.length > 0
+    console.log "CONTROLLER - TOURNAMENT.addTournament request: ", req.body
+    console.log "CHECK HERE: ", req.body
+    unless req.body
       res.writeHead 500, {"Content-Type" : "application/json", "connection" : "keep-alive"}
       res.write JSON.stringify({"error" : "tournament info missing"})
       res.end()
       return
 
-    tournament = new Tournament(JSON.parse(req.body.tournament))
+    tournament = new Tournament(req.body)
     console.log "MODEL - Tournament: ", JSON.stringify(tournament, null, 2)
-
     tournament.save (err, data) =>
       if err
+        console.log "ERR: ", err
         res.writeHead 500, {"Content-Type" : "application/json", "connection" : "keep-alive"}
         res.write JSON.stringify({"error" : "tournament info missing"})
         res.end()
         return
       else
+        console.log "SuccessFUL Save"
         res.writeHead 200, {"Content-Type" : "application/json", "connection" : "keep-alive"}
         res.write JSON.stringify(tournament)
         res.end()
