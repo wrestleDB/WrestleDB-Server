@@ -3,12 +3,16 @@ hasher = require '../services/hasher'
 
 class UserController
   register: (req, res) ->
-    {username, hashedPassword} = req.body
+    console.log "\n\n\nRegister - HERE: ", req.body, "\n\n\n"
+    {username, email, hashedPassword} = req.body
+
+    username = email unless username
 
     unless username?.length > 0 and hashedPassword?.length > 0
       return res.json({error: "User Info Missing"}).status(400).end()
 
     userAlreadyExists = await User.findOne({username: username})
+    console.log "user Already Exists: ", JSON.stringify(userAlreadyExists, null, 2)
     if userAlreadyExists
       return res.json({error: 'User Already Exists in Database'}).status(403).end()
 
@@ -17,12 +21,16 @@ class UserController
       password: hashedPassword
 
     user.save (error, data) ->
+      console.log "User Saved!!", JSON.stringify data, null, 2
+      console.log "User Saved!ERROR!", JSON.stringify error, null, 2
       return res.json(error).status(500).end() if error
-      return res.json({}).status(200).end()
+      return res.json(data).status(200).end()
 
   login: (req, res) ->
-    console.log "\n\n\nHERE: ", req.body, "\n\n\n"
-    {username} = req.body
+    console.log "\n\n\nLOGIN - HERE: ", req.body, "\n\n\n"
+    {username, email} = req.body
+
+    username = email unless username
 
     unless username?.length > 0
       return res.json({error: "User Info Missing"}).status(400).end()
@@ -31,7 +39,6 @@ class UserController
     console.log "User: ", user
 
     return res.json({error: "No User Found"}).status(401).end() unless user
-
 
     return res.json(user).status(200).end()
 
