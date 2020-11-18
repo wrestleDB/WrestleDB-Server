@@ -37,10 +37,11 @@ class UserController
 
     user = await User.findOne({username: username})
     console.log "User: ", user
-
-    return res.json({error: "No User Found"}).status(401).end() unless user
-
-    return res.json(user).status(200).end()
+    unless user
+      return res.json({error: "No User Found"}).status(401).end()
+    console.log "got here"
+    res.json(user).status(200).end()
+    return
 
   getUser: (req, res) ->
     console.log "CONTROLLER - USER.getUser: ", JSON.stringify(req?.query, null, 2)
