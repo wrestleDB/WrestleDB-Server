@@ -32,15 +32,14 @@ class TournamentController
     tournament.save (err, data) =>
       if err
         console.log "ERR: ", err
-        res.writeHead 500, {"Content-Type" : "application/json", "connection" : "keep-alive"}
-        res.write JSON.stringify({"error" : "tournament info missing"})
-        res.end()
-        return
+        res.json({error: err}).status(500).end()
+
       else
-        console.log "SuccessFUL Save"
-        res.writeHead 200, {"Content-Type" : "application/json", "connection" : "keep-alive"}
-        res.write JSON.stringify(tournament)
-        res.end()
+        console.log "SuccessFUL Save", {tournament, data}
+        res.json(tournament).status(201).end()
+        # res.writeHead 200, {"Content-Type" : "application/json", "connection" : "keep-alive"}
+        # res.write JSON.stringify(tournament)
+        # res.end()
 
 module.exports = ->
   new TournamentController()

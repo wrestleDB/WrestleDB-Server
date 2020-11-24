@@ -1,6 +1,6 @@
 mongoose       = require 'mongoose'
 
-bracketTypes = ['double-elimination', 'round-robin', 'dual', 'dual-round-robin']
+bracketTypes = ['double-elimination', 'round-robin', 'dual', 'dual-round-robin', 'Double Elimination', 'Round Robin']
 
 TournamentSchema = new mongoose.Schema
   status    : type: String, default: 'created' #, enums: ['created', 'inProgress', 'complete', 'cancelled']

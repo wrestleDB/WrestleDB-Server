@@ -33,6 +33,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "morgan": "^1.10.0",
     "node-dev": "^4.0.0"
   },
   "engines": {

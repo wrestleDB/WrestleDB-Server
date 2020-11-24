@@ -21,6 +21,6 @@ module.exports = (app) ->
     console.log "loading tournaments route"
     Controllers.Tournament().getTournaments req, res
 
-  app.put '/tournaments', (req, res) ->
-    console.log "ROUTES - put to tournaments route, req.params: ", req.body
+  app.post '/tournaments', (req, res) ->
+    console.log "ROUTES - post to tournaments route, req.params: ", req.body
     Controllers.Tournament().addTournament req, res
