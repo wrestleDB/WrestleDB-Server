@@ -18,6 +18,15 @@ class TournamentController
     res.write JSON.stringify(tournaments)
     res.end()
 
+  getTournament: (req, res) ->
+    event = await Tournament.findById(req.params.id) if req.params.id
+
+    return res.json({error: "no ID passed in"}).status(400).end() unless req.params.id
+    return res.json({error: "No event found for eventId: #{req.params.id}"}).status(400).end() unless event
+
+    return res.json(event).status(200).end()
+
+
   addTournament: (req, res) ->
     console.log "CONTROLLER - TOURNAMENT.addTournament request: ", req.body
     console.log "CHECK HERE: ", req.body
